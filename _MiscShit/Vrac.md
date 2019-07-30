@@ -5,8 +5,10 @@
 - Pouvoir jouer solo ou coop (4tKing)
 - Pêche
 - 3 factions
-- La mort (définitive du perso ? Malus ? Saves classiques)
-- Création de perso style Mass Effect -> Chiant si on part sur des morts définitives de persos
+- La mort (définitive du perso ? Malus ? Saves classiques ?)
+- Création de perso style Mass Effect : le perso du joueur est rejoint par des perso "scénario" jouables
+  - Chiant si on part sur des morts définitives de persos
+  - Sinon : incarner différents aventuriers prédéfinis (FE)
 
 ## Combat
 
@@ -15,8 +17,9 @@ DIfférent caractère d'ennemis (diff focus
 
 ### **Tour par tour putin**
 
-- Calcul de vitesse : cf feuille boulot
+- Calcul de vitesse : cf feuille boulot/code implémenté
 - Possibilité de combiner les actions
+- Différentes action on différentes recovers (FFX)
 - Calcul des dégâts en potency (FF14)
 - Dégâts d'armes variables (épée moins reliable qu'un arc)
 - La fatigue engendre une perte de stats (10%?)
@@ -77,4 +80,4 @@ Régie les interactions sociales
 ## Armes
 
 - Prérequis arme 2 mains ? Ou bien diviser le prérequis ?
-- - Bouclier scale sur la consti
+- Bouclier scale sur la consti

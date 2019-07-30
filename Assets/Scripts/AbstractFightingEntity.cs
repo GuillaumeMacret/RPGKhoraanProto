@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO Make it abstract, obviously
 public class AbstractFightingEntity : MonoBehaviour
 {
     public const int MAX_SPEED = 255;
@@ -12,15 +13,16 @@ public class AbstractFightingEntity : MonoBehaviour
     /*## private var ##*/
     int id;
     //Speed at start of the fight (stat + items)
-    int baseSpeed;
+    public int baseSpeed;
     //Actual speed compting buff and debuff applied while fighting
     int actualSpeed;
+
+    //TODO add an array of debuff, storring they duration and values so we can calculate actualSpeed while it's private scope
 
     /*## public var ##*/
     private int cptSpeed;
     public int CptSpeed { get => cptSpeed; set => cptSpeed = value; }
-    private bool playerControlled;
-    public bool IsPlayerControlled { get => playerControlled; }
+    public bool playerControlled = true;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +40,6 @@ public class AbstractFightingEntity : MonoBehaviour
     {
         this.cptSpeed = cptSpeed;
         this.id = debugId++;
-        playerControlled = true;
     }
 
     public override String ToString()
@@ -53,18 +54,13 @@ public class AbstractFightingEntity : MonoBehaviour
 
     public bool CanPlay()
     {
-        return CptSpeed > MAX_SPEED;
+        return CptSpeed >= MAX_SPEED;
     }
 
-    public void Play()
+    public int Play()
     {
+        //TODO
         throw new NotImplementedException();
-        bool hasPlayed = false;
-
-        if (hasPlayed)
-        {
-            ResetCptSpeed();
-        }
     }
 
     private void ResetCptSpeed()
