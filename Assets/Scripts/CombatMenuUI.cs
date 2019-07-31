@@ -4,20 +4,51 @@ using UnityEngine;
 
 public class CombatMenuUI : MonoBehaviour
 {
-    public string GetAction()
-    {
-        return "Implement me !";
-    }
 
-    // Start is called before the first frame update
+    string action;
+    bool menuLoaded;
+
+    GameObject attackText;
+
+    public GameObject menuCanvasGroup;
+
     void Start()
     {
-        
+        //menuCanvasGroup.SetActive(false);
+        attackText = menuCanvasGroup.GetComponentInChildren<AttackText>();
+        attackText.transform. = 100;
+        //attackText.SetActive(false);
     }
 
-    // Update is called once per frame
+    public void LoadMenu(AbstractFightingEntity entity)
+    {
+        if (menuLoaded) return;
+
+        //TODO Load menu
+        menuCanvasGroup.SetActive(true);
+
+        menuLoaded = true;
+    }
+
+    public void UnloadMenu()
+    {
+        if (!menuLoaded) return;
+
+        //TODO unload menu
+        //TODO destroy childs ?
+        menuCanvasGroup.SetActive(false);
+        menuLoaded = false;
+    }
+
+    public string GetAction()
+    {
+        if (action == null) return null;
+        UnloadMenu();
+        return action;
+    }
+
     void Update()
     {
-        
+
     }
 }

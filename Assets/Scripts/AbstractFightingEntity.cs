@@ -57,14 +57,13 @@ public class AbstractFightingEntity : MonoBehaviour
         return CptSpeed >= MAX_SPEED;
     }
 
-    public int Play()
-    {
-        //TODO
-        throw new NotImplementedException();
-    }
-
     private void ResetCptSpeed()
     {
         CptSpeed = actualSpeed;
+    }
+
+    public void GetCombatMenu()
+    {
+        throw new NotImplementedException();
     }
 }

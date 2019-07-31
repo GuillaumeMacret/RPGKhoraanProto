@@ -28,8 +28,6 @@ public class CombatEngine : MonoBehaviour
         }
         else
         {
-            Debug.Log("Blocked");
-            Debug.Log(m_FightingEntities);
             MakeEntitiesPlay();
         }
     }
@@ -64,27 +62,27 @@ public class CombatEngine : MonoBehaviour
 
     public void MakeEntitiesPlay()
     {
+        string action = null;
         foreach(AbstractFightingEntity entity in m_FightingEntities)
         {
             if (entity.CanPlay() && entity.playerControlled)
             {
-                LoadMenu(entity);
-                string action ;
-                while((action = m_MenuHud.GetAction()) != null)
-                {
-
-                }
+                m_MenuHud.LoadMenu(entity);
             }
+            action = WaitForAction();
+            HandleAction(action);
         }
     }
 
-    private void LoadMenu(AbstractFightingEntity entity)
+    private string WaitForAction()
     {
-        //TODO Calls for menu class with given entity
-        throw new NotImplementedException();
+        //TODO Active wainting is bad
+        string action = null;
+        while ((action = m_MenuHud.GetAction()) == null) ;
+        return action;
     }
 
-    private void handleAction(string action)
+    private void HandleAction(string action)
     {
         Debug.Log("Handling action " + action);
         throw new NotImplementedException();
