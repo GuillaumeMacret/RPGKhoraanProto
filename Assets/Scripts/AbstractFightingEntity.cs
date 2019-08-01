@@ -33,7 +33,11 @@ public class AbstractFightingEntity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //TODO delete me
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Debug.Log("Fire1 pressed in fighting entity");
+        }
     }
 
     public AbstractFightingEntity(int cptSpeed)

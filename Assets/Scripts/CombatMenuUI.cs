@@ -8,16 +8,11 @@ public class CombatMenuUI : MonoBehaviour
     string action;
     bool menuLoaded;
 
-    GameObject attackText;
-
-    public GameObject menuCanvasGroup;
-
     void Start()
     {
         //menuCanvasGroup.SetActive(false);
-        attackText = menuCanvasGroup.GetComponentInChildren<AttackText>();
-        attackText.transform. = 100;
-        //attackText.SetActive(false);
+        //mainCombatMenu = GetComponentInChildren<GameObject>();
+        gameObject.SetActive(false);
     }
 
     public void LoadMenu(AbstractFightingEntity entity)
@@ -25,7 +20,6 @@ public class CombatMenuUI : MonoBehaviour
         if (menuLoaded) return;
 
         //TODO Load menu
-        menuCanvasGroup.SetActive(true);
 
         menuLoaded = true;
     }
@@ -33,10 +27,9 @@ public class CombatMenuUI : MonoBehaviour
     public void UnloadMenu()
     {
         if (!menuLoaded) return;
-
+        
         //TODO unload menu
         //TODO destroy childs ?
-        menuCanvasGroup.SetActive(false);
         menuLoaded = false;
     }
 
@@ -49,6 +42,11 @@ public class CombatMenuUI : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetButtonDown("Fire1"))
+        {
+            action = "attack";
+            Debug.Log("Fire1 pressed in combat mneu");
+            gameObject.SetActive(true);
+        }
     }
 }

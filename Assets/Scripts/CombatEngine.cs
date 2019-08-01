@@ -6,7 +6,7 @@ using UnityEngine;
 public class CombatEngine : MonoBehaviour
 {
     //TODO ideas ...
-    public CombatMenuUI m_MenuHud;
+    public CombatMenuUI m_CombatMenuUI;
 
     public List<AbstractFightingEntity> m_FightingEntities;
     
@@ -21,7 +21,7 @@ public class CombatEngine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!lockTimer)
+        if (!lockTimer)
         {
             int maxCptSpeed = GetMaxEntitiesCptSpeed();
             IncreaseEntitiesCptSpeed(AbstractFightingEntity.MAX_SPEED - maxCptSpeed);
@@ -29,6 +29,12 @@ public class CombatEngine : MonoBehaviour
         else
         {
             MakeEntitiesPlay();
+        }
+
+        //TODO delete me
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Debug.Log("Fire1 pressed in Combat engine");
         }
     }
 
@@ -52,7 +58,6 @@ public class CombatEngine : MonoBehaviour
         foreach (AbstractFightingEntity entity in m_FightingEntities)
         {
             entity.IncreaseCptSpeed(amount);
-            Debug.Log(entity.CanPlay() + " " + entity.playerControlled);
             if (entity.CanPlay() && entity.playerControlled)
             {
                 lockTimer = true;
@@ -67,7 +72,7 @@ public class CombatEngine : MonoBehaviour
         {
             if (entity.CanPlay() && entity.playerControlled)
             {
-                m_MenuHud.LoadMenu(entity);
+                m_CombatMenuUI.LoadMenu(entity);
             }
             action = WaitForAction();
             HandleAction(action);
@@ -76,15 +81,15 @@ public class CombatEngine : MonoBehaviour
 
     private string WaitForAction()
     {
-        //TODO Active wainting is bad
-        string action = null;
-        while ((action = m_MenuHud.GetAction()) == null) ;
-        return action;
+        return m_CombatMenuUI.GetAction();
     }
 
     private void HandleAction(string action)
     {
-        Debug.Log("Handling action " + action);
+        if (action != null)
+        {
+            Debug.Log("Handling action " + action);
+        }
         throw new NotImplementedException();
     }
 }
