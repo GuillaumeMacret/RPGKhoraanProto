@@ -11,11 +11,13 @@ public class AbstractFightingEntity : MonoBehaviour
     private static int debugId = 0;
 
     /*## private var ##*/
-    public int id;
+    int id;
     //Speed at start of the fight (stat + items)
     public int baseSpeed;
     //Actual speed compting buff and debuff applied while fighting
     int actualSpeed;
+    //TODO Statistic deported calss tryout
+    CombatStatistics statistics;
 
     //TODO add an array of debuff, storring they duration and values so we can calculate actualSpeed while it's private scope
 
@@ -30,6 +32,7 @@ public class AbstractFightingEntity : MonoBehaviour
         id = debugId++;
         actualSpeed = baseSpeed;
         cptSpeed = actualSpeed;
+        statistics = GetComponent<CombatStatistics>();
     }
 
     // Update is called once per frame
@@ -44,9 +47,9 @@ public class AbstractFightingEntity : MonoBehaviour
         this.id = debugId++;
     }
 
-    public override String ToString()
+    public override string ToString()
     {
-        return ("Abstract Fighting Entity: {id : " + id + ", cptSpeed : " + cptSpeed + "}");
+        return ("Abstract Fighting Entity: {id : " + id + ", cptSpeed : " + cptSpeed + ", " + statistics + "}");
     }
 
     public void IncreaseCptSpeed(int amount)
