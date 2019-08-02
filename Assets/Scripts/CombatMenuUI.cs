@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,12 +8,20 @@ public class CombatMenuUI : MonoBehaviour
 
     string action;
     bool menuLoaded;
+    public bool isLoaded() { return menuLoaded; }
 
     void Start()
     {
-        //menuCanvasGroup.SetActive(false);
-        //mainCombatMenu = GetComponentInChildren<GameObject>();
-        gameObject.SetActive(false);
+
+    }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            action = "attack";
+            Debug.Log("Fire1 pressed in combat mneu");
+        }
     }
 
     public void LoadMenu(AbstractFightingEntity entity)
@@ -36,17 +45,10 @@ public class CombatMenuUI : MonoBehaviour
     public string GetAction()
     {
         if (action == null) return null;
+        string actionToReturn = action;
+        action = null;
         UnloadMenu();
-        return action;
+        return actionToReturn;
     }
 
-    void Update()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            action = "attack";
-            Debug.Log("Fire1 pressed in combat mneu");
-            gameObject.SetActive(true);
-        }
-    }
 }

@@ -10,7 +10,10 @@ public class CombatEngine : MonoBehaviour
 
     public List<AbstractFightingEntity> m_FightingEntities;
     
-    private bool lockTimer = false;
+    //Locks the timer loop when it's not null. Value indicates how many entities are still ready to play
+    private int lockTimer = 0;
+
+    static bool CanPlay(AbstractFightingEntity e) { return e.CanPlay(); }
 
     // Start is called before the first frame update
     void Start()
@@ -21,20 +24,14 @@ public class CombatEngine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!lockTimer)
+        if (lockTimer == 0)
         {
             int maxCptSpeed = GetMaxEntitiesCptSpeed();
             IncreaseEntitiesCptSpeed(AbstractFightingEntity.MAX_SPEED - maxCptSpeed);
         }
         else
         {
-            MakeEntitiesPlay();
-        }
-
-        //TODO delete me
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Debug.Log("Fire1 pressed in Combat engine");
+            MakeOneEntityPlay();
         }
     }
 
@@ -60,36 +57,48 @@ public class CombatEngine : MonoBehaviour
             entity.IncreaseCptSpeed(amount);
             if (entity.CanPlay() && entity.playerControlled)
             {
-                lockTimer = true;
+                //TODO Could also use a list of rdy players in the class. Is it more effective ?
+                lockTimer++;
+                Debug.Log(m_FightingEntities[0] + "\n" + m_FightingEntities[1]);
             }
         }
     }
 
-    public void MakeEntitiesPlay()
+    public void MakeOneEntityPlay()
     {
-        string action = null;
-        foreach(AbstractFightingEntity entity in m_FightingEntities)
+        //TODO Maybe having a function pulling an entity and another one making it play will be better as we will have to loop while no action is given
+        //TODO Could also use a list of rdy players in the class. Is it more effective ?
+        AbstractFightingEntity entity = m_FightingEntities.Find(CanPlay);
+        if (entity == null)
         {
-            if (entity.CanPlay() && entity.playerControlled)
+            throw new Exception("Function to make an entity play was called but no entity was found able to play!!");
+        }
+        else
+        {
+            if (entity.playerControlled)
             {
-                m_CombatMenuUI.LoadMenu(entity);
+                if (!m_CombatMenuUI.isLoaded()) m_CombatMenuUI.LoadMenu(entity);
+
+                string action = m_CombatMenuUI.GetAction();
+                if(action != null)
+                {
+                    Debug.Log(entity + "Playing action :");
+                    HandleAction(action);
+                    //TODO Make different action recover speed
+                    entity.ResetCptSpeed();
+                    lockTimer--;
+                }
             }
-            action = WaitForAction();
-            HandleAction(action);
         }
     }
-
-    private string WaitForAction()
-    {
-        return m_CombatMenuUI.GetAction();
-    }
-
+    
+    /**
+     * Handles the given action : Adjust hp, mp, ...
+     **/
     private void HandleAction(string action)
     {
-        if (action != null)
-        {
-            Debug.Log("Handling action " + action);
-        }
-        throw new NotImplementedException();
+        Debug.Assert(action != null);
+        Debug.Log("Handling action " + action);
+        //TODO
     }
 }

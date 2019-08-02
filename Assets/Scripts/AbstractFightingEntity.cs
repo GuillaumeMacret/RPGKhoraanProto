@@ -11,7 +11,7 @@ public class AbstractFightingEntity : MonoBehaviour
     private static int debugId = 0;
 
     /*## private var ##*/
-    int id;
+    public int id;
     //Speed at start of the fight (stat + items)
     public int baseSpeed;
     //Actual speed compting buff and debuff applied while fighting
@@ -27,17 +27,15 @@ public class AbstractFightingEntity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        id = debugId++;
+        actualSpeed = baseSpeed;
+        cptSpeed = actualSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //TODO delete me
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Debug.Log("Fire1 pressed in fighting entity");
-        }
+
     }
 
     public AbstractFightingEntity(int cptSpeed)
@@ -61,13 +59,13 @@ public class AbstractFightingEntity : MonoBehaviour
         return CptSpeed >= MAX_SPEED;
     }
 
-    private void ResetCptSpeed()
+    public void ResetCptSpeed()
     {
         CptSpeed = actualSpeed;
     }
 
     public void GetCombatMenu()
     {
-        throw new NotImplementedException();
+        //TODO
     }
 }
