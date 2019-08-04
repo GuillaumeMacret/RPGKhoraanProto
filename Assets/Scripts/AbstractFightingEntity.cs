@@ -73,4 +73,10 @@ public class AbstractFightingEntity : MonoBehaviour
     {
         //TODO
     }
+
+    //Calculates the real damage (substraction armor, ...) and calls for raw change of health
+    public void ChangeHealth(int amout)
+    {
+        statistics.ChangeHealth(amout);
+    }
 }

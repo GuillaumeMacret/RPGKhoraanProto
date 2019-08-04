@@ -7,48 +7,51 @@ public class CombatMenuUI : MonoBehaviour
 {
 
     string action;
-    bool menuLoaded;
-    public bool isLoaded() { return menuLoaded; }
+    Action m_Action;
+
+    AbstractFightingEntity entityPlaying;
+    public bool isLoaded() { return entityPlaying != null; }
 
     void Start()
     {
-
+        entityPlaying = null;
+        m_Action = null;
     }
 
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            action = "attack";
-            Debug.Log("Fire1 pressed in combat mneu");
+            List<AbstractFightingEntity> targets = new List<AbstractFightingEntity>(1);
+            targets.Add(entityPlaying);//FIXME Do a target select system
+            m_Action = new Action(targets);
         }
     }
 
     public void LoadMenu(AbstractFightingEntity entity)
     {
-        if (menuLoaded) return;
+        if (isLoaded()) return;
 
         //TODO Load menu
-
-        menuLoaded = true;
+        Debug.Log("[MENU IS LOADING] For : " + entity);
+        entityPlaying = entity;
     }
 
     public void UnloadMenu()
     {
-        if (!menuLoaded) return;
-        
+        if (!isLoaded()) return;
+
         //TODO unload menu
         //TODO destroy childs ?
-        menuLoaded = false;
+        Debug.Log("[MENU IS UNLOADING]");
+        entityPlaying = null;
     }
 
-    public string GetAction()
+    public Action GetAction()
     {
-        if (action == null) return null;
-        string actionToReturn = action;
-        action = null;
-        UnloadMenu();
-        return actionToReturn;
+        Action returnedAction = m_Action;
+        m_Action = null;
+        return returnedAction;
     }
 
 }

@@ -22,7 +22,7 @@ public class CombatStatistics : MonoBehaviour
 
     public override string ToString()
     {
-        return "CombatStatistics: {currentHp/maxHp : " + currentHp + "/" + maxHp + "speed : " + speed + "}";
+        return "CombatStatistics: {currentHp/maxHp : " + currentHp + "/" + maxHp + " speed : " + speed + "}";
     }
 
     public int GetCurrentHp()
@@ -30,8 +30,9 @@ public class CombatStatistics : MonoBehaviour
         return currentHp;
     }
 
-    public void ChangeHealth(int value)
+    //Raw change of health. Armor, spells, ... are handled in parent ->tbc
+    public void ChangeHealth(int amount)
     {
-        Mathf.Clamp(value, 0, maxHp);
+        currentHp = Mathf.Clamp(currentHp + amount, 0, maxHp);
     }
 }

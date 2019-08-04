@@ -8,6 +8,7 @@ public class CombatEngine : MonoBehaviour
     public CombatMenuUI m_CombatMenuUI;
 
     public List<AbstractFightingEntity> m_FightingEntities;
+
     
     //Locks the timer loop when it's not null. Value indicates how many entities are still ready to play
     private int lockTimer = 0;
@@ -58,7 +59,8 @@ public class CombatEngine : MonoBehaviour
             {
                 //TODO Could also use a list of rdy players in the class. Is it more effective ?
                 lockTimer++;
-                Debug.Log(m_FightingEntities[0] + "\n" + m_FightingEntities[1]);
+                //FIXME Debug purpose, delete this
+                Debug.Log("[RECAP]" + m_FightingEntities[0] + "\n" + m_FightingEntities[1]);
             }
         }
     }
@@ -78,15 +80,19 @@ public class CombatEngine : MonoBehaviour
             {
                 if (!m_CombatMenuUI.isLoaded()) m_CombatMenuUI.LoadMenu(entity);
 
-                string action = m_CombatMenuUI.GetAction();
+                Action action = m_CombatMenuUI.GetAction();
+
                 if(action != null)
                 {
-                    Debug.Log(entity + "Playing action :");
+                    Debug.Log("[INFO]: " + entity + "Playing action " + action);
                     HandleAction(action);
                     //TODO Make different action recover speed
                     entity.ResetCptSpeed();
+                    m_CombatMenuUI.UnloadMenu();
                     lockTimer--;
                 }
+
+                action = null;
             }
         }
     }
@@ -94,10 +100,9 @@ public class CombatEngine : MonoBehaviour
     /**
      * Handles the given action : Adjust hp, mp, ...
      **/
-    private void HandleAction(string action)
+    private void HandleAction(Action action)
     {
         Debug.Assert(action != null);
-        Debug.Log("Handling action " + action);
-        //TODO
+        action.HandleAction();
     }
 }
