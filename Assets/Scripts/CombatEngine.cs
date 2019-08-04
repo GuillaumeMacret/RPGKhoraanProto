@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CombatEngine : MonoBehaviour
 {
-    //TODO ideas ...
     public CombatMenuUI m_CombatMenuUI;
 
     public List<AbstractFightingEntity> m_FightingEntities;
