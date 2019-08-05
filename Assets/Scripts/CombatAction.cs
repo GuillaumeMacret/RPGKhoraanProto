@@ -16,6 +16,18 @@ public class Action
         m_TargetedEntities = targets;
     }
 
+    public void SetAction(string actionName)
+    {
+        name = actionName;
+        potency = -5;
+        //TODO Replace this with a builder
+    }
+
+    public void SetTargets(List<AbstractFightingEntity> targets)
+    {
+        m_TargetedEntities = targets;
+    }
+
     public void HandleAction()
     {
         foreach(AbstractFightingEntity target in m_TargetedEntities)

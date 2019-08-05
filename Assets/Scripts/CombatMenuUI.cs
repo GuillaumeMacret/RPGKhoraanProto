@@ -6,26 +6,20 @@ using UnityEngine;
 public class CombatMenuUI : MonoBehaviour
 {
 
-    string action;
-    Action m_Action;
+    public static Action action;
 
-    AbstractFightingEntity entityPlaying;
+    public static AbstractFightingEntity entityPlaying;
     public bool isLoaded() { return entityPlaying != null; }
 
     void Start()
     {
         entityPlaying = null;
-        m_Action = null;
+        action = null;
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            List<AbstractFightingEntity> targets = new List<AbstractFightingEntity>(1);
-            targets.Add(entityPlaying);//FIXME Do a target select system
-            m_Action = new Action(targets);
-        }
+        
     }
 
     public void LoadMenu(AbstractFightingEntity entity)
@@ -49,8 +43,8 @@ public class CombatMenuUI : MonoBehaviour
 
     public Action GetAction()
     {
-        Action returnedAction = m_Action;
-        m_Action = null;
+        Action returnedAction = action;
+        action = null;
         return returnedAction;
     }
 

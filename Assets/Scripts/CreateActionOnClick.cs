@@ -6,6 +6,9 @@ public class CreateActionOnClick : MonoBehaviour
 {
     public void CreateAction(string actionName)
     {
-        Debug.Log(actionName);
+        CombatMenuUI.action.SetAction(actionName);
+        List<AbstractFightingEntity> targets = new List<AbstractFightingEntity>();
+        targets.Add(CombatMenuUI.entityPlaying);
+        CombatMenuUI.action.SetTargets(targets);
     }
 }
