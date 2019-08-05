@@ -30,9 +30,14 @@ public class CombatStatistics : MonoBehaviour
         return currentHp;
     }
 
-    //Raw change of health. Armor, spells, ... are handled in parent ->tbc
-    public void ChangeHealth(int amount)
+    /**
+     * Raw change of health. Armor, spells, ... are handled in parent ->tbc
+     * @param the amount added
+     * @return The ratio currentHp/maxHp
+     **/
+    public float ChangeHealth(int amount)
     {
         currentHp = Mathf.Clamp(currentHp + amount, 0, maxHp);
+        return (float)currentHp / maxHp;
     }
 }

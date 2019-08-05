@@ -19,6 +19,8 @@ public class AbstractFightingEntity : MonoBehaviour
     //TODO Statistic deported calss tryout
     CombatStatistics statistics;
 
+    CombatFloatingHealthBar floatingHealthBar;
+
     //TODO add an array of debuff, storring they duration and values so we can calculate actualSpeed while it's private scope
 
     /*## public var ##*/
@@ -31,6 +33,7 @@ public class AbstractFightingEntity : MonoBehaviour
     {
         id = debugId++;
         statistics = GetComponentInChildren<CombatStatistics>();
+        floatingHealthBar = GetComponentInChildren<CombatFloatingHealthBar>();
         baseSpeed = statistics.speed;
         actualSpeed = baseSpeed;
         cptSpeed = actualSpeed;
@@ -77,6 +80,7 @@ public class AbstractFightingEntity : MonoBehaviour
     //Calculates the real damage (substraction armor, ...) and calls for raw change of health
     public void ChangeHealth(int amout)
     {
-        statistics.ChangeHealth(amout);
+        float ratio = statistics.ChangeHealth(amout);
+        floatingHealthBar.UpdateFill(ratio);
     }
 }
