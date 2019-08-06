@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class CreateActionOnClick : MonoBehaviour
 {
+    public CombatMenuUI combatMenuUI;
+
     public void CreateAction(string actionName)
     {
-        CombatMenuUI.action.SetAction(actionName);
+        combatMenuUI.SetAction(actionName);
+
+        //TODO Remove this part
         List<AbstractFightingEntity> targets = new List<AbstractFightingEntity>();
-        targets.Add(CombatMenuUI.entityPlaying);
-        CombatMenuUI.action.SetTargets(targets);
+        targets.Add(combatMenuUI.EntityPlaying);
+        combatMenuUI.SetTargets(targets);
+        combatMenuUI.SetActionReady();
+        //
     }
 }

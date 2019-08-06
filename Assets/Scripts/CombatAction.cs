@@ -2,14 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action
+public class CombatAction
 {
     string name;
     //Strengh of the attack. Negative value indicates damages, positive is healing.
     int potency;
     List<AbstractFightingEntity> m_TargetedEntities;
+    bool built;
 
-    public Action(List<AbstractFightingEntity> targets)
+    public bool Built { get => built; set => built = value; }
+
+    public bool IsBuilt() { return Built; }
+
+    public CombatAction()
+    {
+        name = "";
+        potency = 0;
+        m_TargetedEntities = new List<AbstractFightingEntity>();
+        Debug.Log("Blank construct");
+    }
+
+    public CombatAction(CombatAction action)
+    {
+        name = action.name;
+        potency = action.potency;
+        m_TargetedEntities = new List<AbstractFightingEntity>();
+        foreach(AbstractFightingEntity target in action.m_TargetedEntities)
+        {
+            m_TargetedEntities.Add(target);
+        }
+        Built = action.Built;
+    }
+
+    public CombatAction(List<AbstractFightingEntity> targets)
     {
         name = "attack";
         potency = -5;
@@ -38,6 +63,7 @@ public class Action
 
     public override string ToString()
     {
-        return name;
+        //TODO
+        return "Combat Action : {Name: " + name + ", potency: " + potency + ", targets: TODO, built: " + built + "}";
     }
 }

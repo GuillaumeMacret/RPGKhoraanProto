@@ -80,11 +80,11 @@ public class CombatEngine : MonoBehaviour
             {
                 if (!m_CombatMenuUI.isLoaded()) m_CombatMenuUI.LoadMenu(entity);
 
-                Action action = m_CombatMenuUI.GetAction();
+                CombatAction action = m_CombatMenuUI.GetAction();
 
                 if(action != null)
                 {
-                    Debug.Log("[INFO]: " + entity + "Playing action " + action);
+                    Debug.Log("[INFO]: " + entity + " Playing action " + action);
                     HandleAction(action);
                     //TODO Make different action recover speed
                     entity.ResetCptSpeed();
@@ -100,7 +100,7 @@ public class CombatEngine : MonoBehaviour
     /**
      * Handles the given action : Adjust hp, mp, ...
      **/
-    private void HandleAction(Action action)
+    private void HandleAction(CombatAction action)
     {
         Debug.Assert(action != null);
         action.HandleAction();
