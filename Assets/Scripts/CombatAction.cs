@@ -9,7 +9,6 @@ public class CombatAction
     int potency;
     List<AbstractFightingEntity> m_TargetedEntities;
     bool built;
-
     public bool Built { get => built; set => built = value; }
 
     public bool IsBuilt() { return Built; }
