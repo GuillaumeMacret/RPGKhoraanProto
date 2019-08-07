@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //TODO Make it abstract, obviously
 public class AbstractFightingEntity : MonoBehaviour
 {
     public const int MAX_SPEED = 255;
+
+    public Text hpText;
 
     private static int debugId = 0;
 
@@ -37,7 +40,7 @@ public class AbstractFightingEntity : MonoBehaviour
         baseSpeed = statistics.speed;
         actualSpeed = baseSpeed;
         cptSpeed = actualSpeed;
-
+        hpText.text = statistics.GetCurrentHp() + " / " + statistics.maxHp;
     }
 
     // Update is called once per frame
@@ -82,5 +85,6 @@ public class AbstractFightingEntity : MonoBehaviour
     {
         float ratio = statistics.ChangeHealth(amout);
         floatingHealthBar.UpdateFill(ratio);
+        hpText.text = statistics.GetCurrentHp() + " / " + statistics.maxHp;
     }
 }
