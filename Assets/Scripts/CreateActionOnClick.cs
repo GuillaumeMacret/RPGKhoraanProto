@@ -11,9 +11,6 @@ public class CreateActionOnClick : MonoBehaviour
         combatMenuUI.SetAction(actionName);
 
         //TODO Remove this part
-        List<AbstractFightingEntity> targets = new List<AbstractFightingEntity>();
-        targets.Add(combatMenuUI.EntityPlaying);
-        combatMenuUI.SetTargets(targets);
         combatMenuUI.SetActionReady();
         //
     }

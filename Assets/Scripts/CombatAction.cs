@@ -47,9 +47,20 @@ public class CombatAction
         //TODO Replace this with a builder
     }
 
+    //FIXME Should copy this instead of passing ref shouldn't we?
     public void SetTargets(List<AbstractFightingEntity> targets)
     {
         m_TargetedEntities = targets;
+    }
+
+    /**
+     * Clear the current target list and adds the target given
+     * @param the target to add to the list
+     **/
+    public void SetTarget(AbstractFightingEntity target)
+    {
+        m_TargetedEntities = new List<AbstractFightingEntity>();
+        m_TargetedEntities.Add(target);
     }
 
     public void HandleAction()
@@ -63,6 +74,6 @@ public class CombatAction
     public override string ToString()
     {
         //TODO
-        return "Combat Action : {Name: " + name + ", potency: " + potency + ", targets: TODO, built: " + built + "}";
+        return "Combat Action : {Name: " + name + ", potency: " + potency + ", targets:[0]"+m_TargetedEntities[0] + ", built: " + built + "}";
     }
 }

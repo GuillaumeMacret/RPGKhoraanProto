@@ -23,6 +23,7 @@ public class SelectTargetOnClick : MonoBehaviour
 
     public void AddEntityToTargeted()
     {
-        Debug.Log("Adding " + target);
+        //TODO Singleton the CombatAction building or something in order to acess it there
+        CombatMenuUI.instance.SetTarget(target);
     }
 }

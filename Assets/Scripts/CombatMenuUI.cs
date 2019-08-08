@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CombatMenuUI : MonoBehaviour
 {
+    public static CombatMenuUI instance = null;
 
     CombatAction action;
 
@@ -17,10 +18,14 @@ public class CombatMenuUI : MonoBehaviour
 
     public bool isLoaded() { return EntityPlaying != null; }
 
-    void Start()
+    void Awake()
     {
         entityPlaying = null;
         action = new CombatAction();
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
     }
 
     void Update()
@@ -73,6 +78,12 @@ public class CombatMenuUI : MonoBehaviour
     public void SetTargets(List<AbstractFightingEntity> targets)
     {
         action.SetTargets(targets);
+    }
+
+    public void SetTarget(AbstractFightingEntity target)
+    {
+        action.SetTarget(target);
+        Debug.Log("Targets setted new action is " + action);
     }
 
     public void SetActionReady()
