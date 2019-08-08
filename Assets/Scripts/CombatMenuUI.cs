@@ -11,6 +11,10 @@ public class CombatMenuUI : MonoBehaviour
     AbstractFightingEntity entityPlaying;
     public AbstractFightingEntity EntityPlaying { get => entityPlaying;}
 
+    public SelectTargetOnClick targetButtonPrefab;
+
+    public GameObject targetsMenuContainer;
+
     public bool isLoaded() { return EntityPlaying != null; }
 
     void Start()
@@ -24,7 +28,7 @@ public class CombatMenuUI : MonoBehaviour
         
     }
 
-    public void LoadMenu(AbstractFightingEntity entity)
+    public void LoadActionsMenu(AbstractFightingEntity entity)
     {
         if (isLoaded()) return;
 
@@ -41,6 +45,13 @@ public class CombatMenuUI : MonoBehaviour
         //TODO destroy childs ?
         Debug.Log("[MENU IS UNLOADING]");
         entityPlaying = null;
+    }
+
+    public void CreateTargetButton(AbstractFightingEntity entity)
+    {
+        SelectTargetOnClick newTargetButtonPrefab = Instantiate(targetButtonPrefab);
+        newTargetButtonPrefab.SetTargetAndOnClick(entity);
+        newTargetButtonPrefab.transform.SetParent(targetsMenuContainer.transform);
     }
 
     public CombatAction GetAction()

@@ -19,6 +19,15 @@ public class CombatEngine : MonoBehaviour
     void Start()
     {
         GetMaxEntitiesCptSpeed();
+        CreateTargetButtons();
+    }
+
+    void CreateTargetButtons()
+    {
+        foreach(AbstractFightingEntity entity in m_FightingEntities)
+        {
+            m_CombatMenuUI.CreateTargetButton(entity);
+        }
     }
 
     // Update is called once per frame
@@ -78,7 +87,7 @@ public class CombatEngine : MonoBehaviour
         {
             if (entity.playerControlled)
             {
-                if (!m_CombatMenuUI.isLoaded()) m_CombatMenuUI.LoadMenu(entity);
+                if (!m_CombatMenuUI.isLoaded()) m_CombatMenuUI.LoadActionsMenu(entity);
 
                 CombatAction action = m_CombatMenuUI.GetAction();
 
