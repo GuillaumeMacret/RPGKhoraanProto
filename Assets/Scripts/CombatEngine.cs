@@ -20,6 +20,8 @@ public class CombatEngine : MonoBehaviour
     {
         GetMaxEntitiesCptSpeed();
         CreateTargetButtons();
+        CreateTargetButtons();
+        CreateTargetButtons();
     }
 
     void CreateTargetButtons()
