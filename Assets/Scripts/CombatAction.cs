@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,12 +46,21 @@ public class CombatAction
         name = actionName;
         potency = -5;
         //TODO Replace this with a builder
+
+        TestIfActionIsReady();
+    }
+
+    private void TestIfActionIsReady()
+    {
+        built = (name != "") && (m_TargetedEntities.Count > 0);
     }
 
     //FIXME Should copy this instead of passing ref shouldn't we?
     public void SetTargets(List<AbstractFightingEntity> targets)
     {
-        m_TargetedEntities = targets;
+        //TODO
+        throw new NotImplementedException();
+        TestIfActionIsReady();
     }
 
     /**
@@ -61,8 +71,12 @@ public class CombatAction
     {
         m_TargetedEntities = new List<AbstractFightingEntity>();
         m_TargetedEntities.Add(target);
+        TestIfActionIsReady();
     }
 
+    /**
+     * Default Action handling. Special effects should be applied here
+     **/
     public void HandleAction()
     {
         foreach(AbstractFightingEntity target in m_TargetedEntities)

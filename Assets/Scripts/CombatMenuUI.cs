@@ -55,7 +55,7 @@ public class CombatMenuUI : MonoBehaviour
     public void CreateTargetButton(AbstractFightingEntity entity)
     {
         SelectTargetOnClick newTargetButtonPrefab = Instantiate(targetButtonPrefab);
-        newTargetButtonPrefab.SetTargetAndOnClick(entity);
+        newTargetButtonPrefab.SetTarget(entity);
         newTargetButtonPrefab.transform.SetParent(targetsMenuContainer.transform);
     }
 
@@ -73,6 +73,7 @@ public class CombatMenuUI : MonoBehaviour
     public void SetAction(string actionName)
     {
         action.SetAction(actionName);
+        Debug.Log("Action setted new action is " + action);
     }
 
     public void SetTargets(List<AbstractFightingEntity> targets)
@@ -84,10 +85,5 @@ public class CombatMenuUI : MonoBehaviour
     {
         action.SetTarget(target);
         Debug.Log("Targets setted new action is " + action);
-    }
-
-    public void SetActionReady()
-    {
-        action.Built = true;
     }
 }
