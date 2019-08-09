@@ -5,49 +5,44 @@ using UnityEngine;
 
 public class CombatAction
 {
-    string name;
+    protected string name;
     //Strengh of the attack. Negative value indicates damages, positive is healing.
-    int potency;
+    protected int potency;
     List<AbstractFightingEntity> m_TargetedEntities;
-    bool built;
+    protected bool built;
     public bool Built { get => built; set => built = value; }
 
     public bool IsBuilt() { return Built; }
-
-    public CombatAction()
+    
+    public static CombatAction CreateAction(string actionName)
     {
-        name = "";
-        potency = 0;
-        m_TargetedEntities = new List<AbstractFightingEntity>();
-        Debug.Log("Blank construct");
-    }
-
-    public CombatAction(CombatAction action)
-    {
-        name = action.name;
-        potency = action.potency;
-        m_TargetedEntities = new List<AbstractFightingEntity>();
-        foreach(AbstractFightingEntity target in action.m_TargetedEntities)
+        CombatAction action = null; 
+        if(actionName == "attack")
         {
-            m_TargetedEntities.Add(target);
+            action = new AttackAction();
         }
-        Built = action.Built;
-    }
+        else if (actionName == "heal")
+        {
+            action = new HealAction();
+        }
 
-    public CombatAction(List<AbstractFightingEntity> targets)
-    {
-        name = "attack";
-        potency = -5;
-        m_TargetedEntities = targets;
+        if(action != null)
+        {
+            //TODO Use dynamic targets menu printing
+            action.m_TargetedEntities = new List<AbstractFightingEntity>();
+            //
+            action.TestIfActionIsReady();
+        }
+        
+        return action;
     }
-
+    
     public void SetAction(string actionName)
     {
         name = actionName;
         potency = -5;
         //TODO Replace this with a builder
 
-        TestIfActionIsReady();
     }
 
     private void TestIfActionIsReady()

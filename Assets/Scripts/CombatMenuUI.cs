@@ -7,7 +7,7 @@ public class CombatMenuUI : MonoBehaviour
 {
     public static CombatMenuUI instance = null;
 
-    CombatAction action;
+    CombatAction action = null;
 
     AbstractFightingEntity entityPlaying;
     public AbstractFightingEntity EntityPlaying { get => entityPlaying;}
@@ -21,7 +21,7 @@ public class CombatMenuUI : MonoBehaviour
     void Awake()
     {
         entityPlaying = null;
-        action = new CombatAction();
+        //action = new CombatAction();
         if (instance == null)
             instance = this;
         else if (instance != this)
@@ -61,10 +61,10 @@ public class CombatMenuUI : MonoBehaviour
 
     public CombatAction GetAction()
     {
-        if (action.IsBuilt())
+        if (action != null && action.IsBuilt())
         {
-            CombatAction returnedAction = new CombatAction(action);
-            action = new CombatAction();
+            CombatAction returnedAction = action;
+            action = null;
             return returnedAction;
         }
         return null;
@@ -72,7 +72,8 @@ public class CombatMenuUI : MonoBehaviour
 
     public void SetAction(string actionName)
     {
-        action.SetAction(actionName);
+        action = CombatAction.CreateAction(actionName);
+        //action.SetAction(actionName);
         Debug.Log("Action setted new action is " + action);
     }
 
