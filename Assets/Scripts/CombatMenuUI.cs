@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatMenuUI : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class CombatMenuUI : MonoBehaviour
     public GameObject targetsMenuContainer;
 
     public bool isLoaded() { return EntityPlaying != null; }
+
+    public Text topLabel;
 
     void Awake()
     {
@@ -40,6 +43,7 @@ public class CombatMenuUI : MonoBehaviour
         //TODO Load menu
         Debug.Log("[MENU IS LOADING] For : " + entity);
         entityPlaying = entity;
+        topLabel.text = entity.name;
     }
 
     public void UnloadMenu()

@@ -37,14 +37,6 @@ public class CombatAction
         return action;
     }
     
-    public void SetAction(string actionName)
-    {
-        name = actionName;
-        potency = -5;
-        //TODO Replace this with a builder
-
-    }
-
     private void TestIfActionIsReady()
     {
         built = (name != "") && (m_TargetedEntities.Count > 0);
