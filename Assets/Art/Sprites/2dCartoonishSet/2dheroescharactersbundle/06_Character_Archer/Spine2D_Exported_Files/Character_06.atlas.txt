@@ -1,0 +1,160 @@
+
+Character_06.png
+size: 3121,3121
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arrow_1
+  rotate: false
+  xy: 1378, 269
+  size: 506, 1058
+  orig: 508, 1060
+  offset: 1, 1
+  index: -1
+Arrow_2
+  rotate: true
+  xy: 1738, 2410
+  size: 703, 939
+  orig: 705, 941
+  offset: 1, 1
+  index: -1
+Arrow_3
+  rotate: false
+  xy: 1141, 1335
+  size: 574, 1021
+  orig: 576, 1023
+  offset: 1, 1
+  index: -1
+Arrow_4
+  rotate: false
+  xy: 8, 149
+  size: 789, 867
+  orig: 791, 869
+  offset: 1, 1
+  index: -1
+Body
+  rotate: true
+  xy: 2058, 108
+  size: 389, 629
+  orig: 391, 631
+  offset: 1, 1
+  index: -1
+Bow
+  rotate: false
+  xy: 8, 2364
+  size: 1722, 749
+  orig: 1724, 751
+  offset: 1, 1
+  index: -1
+arm_left
+  rotate: true
+  xy: 2541, 2024
+  size: 369, 563
+  orig: 371, 565
+  offset: 1, 1
+  index: -1
+arm_right
+  rotate: false
+  xy: 2756, 1387
+  size: 246, 629
+  orig: 248, 631
+  offset: 1, 1
+  index: -1
+arrows_holder
+  rotate: false
+  xy: 805, 141
+  size: 565, 875
+  orig: 567, 877
+  offset: 1, 1
+  index: -1
+cape_back
+  rotate: false
+  xy: 1723, 1335
+  size: 251, 604
+  orig: 253, 606
+  offset: 1, 1
+  index: -1
+cape_front
+  rotate: false
+  xy: 1982, 1243
+  size: 766, 696
+  orig: 768, 698
+  offset: 1, 1
+  index: -1
+eyes
+  rotate: true
+  xy: 2695, 123
+  size: 428, 139
+  orig: 430, 141
+  offset: 1, 1
+  index: -1
+eyes closed
+  rotate: false
+  xy: 8, 18
+  size: 438, 123
+  orig: 440, 125
+  offset: 1, 1
+  index: -1
+hair_back
+  rotate: false
+  xy: 2820, 695
+  size: 205, 330
+  orig: 207, 332
+  offset: 1, 1
+  index: -1
+hair_front
+  rotate: false
+  xy: 2842, 343
+  size: 187, 344
+  orig: 189, 346
+  offset: 1, 1
+  index: -1
+hair_top
+  rotate: true
+  xy: 2820, 1033
+  size: 346, 224
+  orig: 348, 226
+  offset: 1, 1
+  index: -1
+head
+  rotate: false
+  xy: 1892, 505
+  size: 658, 730
+  orig: 660, 732
+  offset: 1, 1
+  index: -1
+leg_left
+  rotate: false
+  xy: 2685, 2401
+  size: 349, 712
+  orig: 351, 714
+  offset: 1, 1
+  index: -1
+leg_right
+  rotate: true
+  xy: 1738, 1947
+  size: 455, 795
+  orig: 457, 797
+  offset: 1, 1
+  index: -1
+robe
+  rotate: false
+  xy: 8, 1024
+  size: 1125, 1332
+  orig: 1127, 1334
+  offset: 1, 1
+  index: -1
+string_01
+  rotate: false
+  xy: 1378, 8
+  size: 672, 253
+  orig: 674, 255
+  offset: 1, 1
+  index: -1
+string_02
+  rotate: true
+  xy: 2558, 559
+  size: 676, 254
+  orig: 678, 256
+  offset: 1, 1
+  index: -1

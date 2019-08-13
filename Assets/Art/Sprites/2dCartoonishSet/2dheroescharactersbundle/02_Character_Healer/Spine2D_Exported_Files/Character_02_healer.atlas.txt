@@ -1,0 +1,97 @@
+
+Character_02_healer.png
+size: 2540,2540
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_left
+  rotate: true
+  xy: 1522, 268
+  size: 351, 649
+  orig: 353, 651
+  offset: 1, 1
+  index: -1
+arm_right_holding
+  rotate: true
+  xy: 685, 90
+  size: 294, 677
+  orig: 296, 679
+  offset: 1, 1
+  index: -1
+body
+  rotate: false
+  xy: 1117, 586
+  size: 397, 1317
+  orig: 399, 1319
+  offset: 1, 1
+  index: -1
+eyebrows
+  rotate: true
+  xy: 1370, 126
+  size: 452, 107
+  orig: 454, 109
+  offset: 1, 1
+  index: -1
+eyes
+  rotate: false
+  xy: 1485, 107
+  size: 426, 153
+  orig: 428, 155
+  offset: 1, 1
+  index: -1
+eyes_closed
+  rotate: true
+  xy: 2386, 1318
+  size: 438, 146
+  orig: 440, 148
+  offset: 1, 1
+  index: -1
+face
+  rotate: false
+  xy: 1887, 1764
+  size: 641, 768
+  orig: 643, 770
+  offset: 1, 1
+  index: -1
+hair
+  rotate: false
+  xy: 8, 392
+  size: 1101, 1511
+  orig: 1103, 1513
+  offset: 1, 1
+  index: -1
+hair_back
+  rotate: true
+  xy: 1522, 627
+  size: 1129, 856
+  orig: 1131, 858
+  offset: 1, 1
+  index: -1
+leg_left
+  rotate: false
+  xy: 2179, 10
+  size: 254, 609
+  orig: 256, 611
+  offset: 1, 1
+  index: -1
+leg_right
+  rotate: true
+  xy: 8, 65
+  size: 319, 669
+  orig: 321, 671
+  offset: 1, 1
+  index: -1
+lips
+  rotate: false
+  xy: 1522, 1834
+  size: 174, 69
+  orig: 176, 71
+  offset: 1, 1
+  index: -1
+staff
+  rotate: false
+  xy: 8, 1911
+  size: 1871, 621
+  orig: 1873, 623
+  offset: 1, 1
+  index: -1

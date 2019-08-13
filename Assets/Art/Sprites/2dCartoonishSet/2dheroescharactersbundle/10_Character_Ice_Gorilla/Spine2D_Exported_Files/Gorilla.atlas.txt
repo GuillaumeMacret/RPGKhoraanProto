@@ -1,0 +1,55 @@
+
+Gorilla.png
+size: 3447,3447
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Attack
+  rotate: false
+  xy: 1702, 2052
+  size: 1364, 1387
+  orig: 1366, 1389
+  offset: 1, 1
+  index: -1
+arm_left
+  rotate: false
+  xy: 1035, 1241
+  size: 659, 2198
+  orig: 660, 2200
+  offset: 0, 1
+  index: -1
+arm_right
+  rotate: false
+  xy: 8, 1034
+  size: 1019, 2405
+  orig: 1021, 2407
+  offset: 1, 1
+  index: -1
+body
+  rotate: false
+  xy: 1702, 974
+  size: 1421, 1070
+  orig: 1423, 1072
+  offset: 1, 1
+  index: -1
+head
+  rotate: true
+  xy: 8, 48
+  size: 978, 1372
+  orig: 980, 1374
+  offset: 1, 1
+  index: -1
+leg_left
+  rotate: true
+  xy: 2454, 292
+  size: 674, 985
+  orig: 676, 987
+  offset: 1, 1
+  index: -1
+leg_right
+  rotate: true
+  xy: 1388, 272
+  size: 694, 1058
+  orig: 696, 1060
+  offset: 1, 1
+  index: -1
