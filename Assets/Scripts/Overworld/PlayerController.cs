@@ -42,5 +42,19 @@ public class PlayerController : MonoBehaviour
         position = position + move * speed * Time.deltaTime;
 
         rigidbody2d.MovePosition(position);
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 3.0f, LayerMask.GetMask("NPC"));
+            if (hit.collider != null)
+            {
+                Debug.Log(hit.collider);
+                NonPlayableCharacter character = hit.collider.GetComponent<NonPlayableCharacter>();
+                if (character != null)
+                {
+                    character.DisplayDialog();
+                }
+            }
+        }
     }
 }
