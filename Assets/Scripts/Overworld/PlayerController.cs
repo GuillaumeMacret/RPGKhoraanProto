@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
             lookDirection.Normalize();
         }
 
+        Debug.Log(lookDirection);
+
         animator.SetFloat("Look X", lookDirection.x);
         animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", move.magnitude);
