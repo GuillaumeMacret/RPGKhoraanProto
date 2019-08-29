@@ -11,28 +11,35 @@ public class AbstractFightingEntity : MonoBehaviour
 
     public Text hpText;
 
-    private static int debugId = 0;
+    protected static int debugId = 0;
 
-    /*## private var ##*/
-    int id;
+    /*## private & protected var ##*/
+    public string entityName;
+    // Unit id, for testing purpose mainly
+    protected int id;
     //Speed at start of the fight (stat + items)
-    int baseSpeed;
+    protected int baseSpeed;
     //Actual speed compting buff and debuff applied while fighting
-    int actualSpeed;
+    protected int actualSpeed;
     //TODO Statistic deported calss tryout
-    CombatStatistics statistics;
+    protected CombatStatistics statistics;
 
-    CombatFloatingHealthBar floatingHealthBar;
+    protected CombatFloatingHealthBar floatingHealthBar;
 
     //TODO add an array of debuff, storring they duration and values so we can calculate actualSpeed while it's private scope
 
     /*## public var ##*/
-    private int cptSpeed;
-    public int CptSpeed { get => cptSpeed; set => cptSpeed = value; }
+    protected int cptSpeed;
+    public int CptSpeed { get => cptSpeed;}
     public bool playerControlled = true;
 
     // Start is called before the first frame update
     void Start()
+    {
+        RecurentEntityInit();
+    }
+
+    protected void RecurentEntityInit()
     {
         id = debugId++;
         statistics = GetComponentInChildren<CombatStatistics>();
@@ -57,12 +64,12 @@ public class AbstractFightingEntity : MonoBehaviour
 
     public override string ToString()
     {
-        return ("Abstract Fighting Entity: {id : " + id + ", cptSpeed : " + cptSpeed + ", " + statistics.ToString() + "}");
+        return (entityName + " Fighting Entity: {id : " + id + ", cptSpeed : " + cptSpeed + ", " + statistics.ToString() + "}");
     }
 
     public void IncreaseCptSpeed(int amount)
     {
-        CptSpeed += amount;
+        cptSpeed += amount;
     }
 
     public bool CanPlay()
@@ -72,7 +79,7 @@ public class AbstractFightingEntity : MonoBehaviour
 
     public void ResetCptSpeed()
     {
-        CptSpeed = actualSpeed;
+        cptSpeed = actualSpeed;
     }
 
     public void GetCombatMenu()

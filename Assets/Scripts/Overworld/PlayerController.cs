@@ -33,8 +33,6 @@ public class PlayerController : MonoBehaviour
             lookDirection.Normalize();
         }
 
-        Debug.Log(lookDirection);
-
         animator.SetFloat("Look X", lookDirection.x);
         animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", move.magnitude);
@@ -54,7 +52,7 @@ public class PlayerController : MonoBehaviour
                 NonPlayableCharacter character = hit.collider.GetComponent<NonPlayableCharacter>();
                 if (character != null)
                 {
-                    character.DisplayDialog();
+                    character.OnRaycast();
                 }
             }
         }

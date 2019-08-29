@@ -30,7 +30,7 @@ public class NonPlayableCharacter : MonoBehaviour
         }
     }
 
-    public void DisplayDialog()
+    public virtual void OnRaycast()
     {
         dialogBox.SetActive(true);
         timerDisplay = displayTime;

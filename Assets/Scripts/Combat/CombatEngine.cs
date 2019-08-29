@@ -18,9 +18,23 @@ public class CombatEngine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //TEST purpose 2 lines
+        GlobalContext.FightingEntitiesNamesToInstantiate.Add("Fake");
+        GlobalContext.FightingEntitiesNamesToInstantiate.Add("Fake");
+
+        int tempPos = 0;
+        foreach(string entityName in GlobalContext.FightingEntitiesNamesToInstantiate)
+        {
+            AbstractFightingEntity entity = FightingEntitiesStore.instance.getEntityPrefab(entityName);
+            //TODO Change entity postion
+            m_FightingEntities.Add(Instantiate(entity,new Vector3(tempPos, tempPos, 0),Quaternion.identity));
+            tempPos++;
+        }
+
+
+
+
         GetMaxEntitiesCptSpeed();
-        CreateTargetButtons();
-        CreateTargetButtons();
         CreateTargetButtons();
     }
 
