@@ -11,10 +11,11 @@ public class GeneralFightingEntity : MonoBehaviour
 
     public Text hpText;
 
+    public string entityName;
+
     protected static int debugId = 0;
 
     /*## private & protected var ##*/
-    public string entityName;
     // Unit id, for testing purpose mainly
     protected int id;
     //Speed at start of the fight (stat + items)

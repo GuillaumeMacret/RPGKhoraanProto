@@ -18,20 +18,21 @@ public class CombatEngine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CreateEntities();
+        GetMaxEntitiesCptSpeed();
+        CreateTargetButtons();
+    }
+
+    void CreateEntities()
+    {
         int tempPos = 0;
-        foreach(string entityName in GlobalContext.FightingEntitiesNamesToInstantiate)
+        foreach (string entityName in GlobalContext.FightingEntitiesNamesToInstantiate)
         {
             GeneralFightingEntity entity = FightingEntitiesStore.instance.getEntityPrefab(entityName);
             //TODO Change entity postion
-            m_FightingEntities.Add(Instantiate(entity,new Vector3(tempPos, tempPos, 0),Quaternion.identity));
+            m_FightingEntities.Add(Instantiate(entity, new Vector3(tempPos, tempPos, 0), Quaternion.identity));
             tempPos++;
         }
-
-
-
-
-        GetMaxEntitiesCptSpeed();
-        CreateTargetButtons();
     }
 
     void CreateTargetButtons()
@@ -76,7 +77,7 @@ public class CombatEngine : MonoBehaviour
         foreach (GeneralFightingEntity entity in m_FightingEntities)
         {
             entity.IncreaseCptSpeed(amount);
-            if (entity.CanPlay() && entity.playerControlled)
+            if (entity.CanPlay())
             {
                 //TODO Could also use a list of rdy players in the class. Is it more effective ?
                 lockTimer++;
@@ -114,6 +115,13 @@ public class CombatEngine : MonoBehaviour
                 }
 
                 action = null;
+            }
+            else
+            {
+                Debug.Log("[To be implemented] NPC entity needs to play, skipping");
+                //TODO
+                entity.ResetCptSpeed();
+                lockTimer--;
             }
         }
     }
