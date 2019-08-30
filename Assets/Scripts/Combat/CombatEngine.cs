@@ -7,25 +7,21 @@ public class CombatEngine : MonoBehaviour
 {
     public CombatMenuUI m_CombatMenuUI;
 
-    public List<AbstractFightingEntity> m_FightingEntities;
+    public List<GeneralFightingEntity> m_FightingEntities;
 
     
     //Locks the timer loop when it's not null. Value indicates how many entities are still ready to play
     private int lockTimer = 0;
 
-    static bool CanPlay(AbstractFightingEntity e) { return e.CanPlay(); }
+    static bool CanPlay(GeneralFightingEntity e) { return e.CanPlay(); }
 
     // Start is called before the first frame update
     void Start()
     {
-        //TEST purpose 2 lines
-        GlobalContext.FightingEntitiesNamesToInstantiate.Add("Fake");
-        GlobalContext.FightingEntitiesNamesToInstantiate.Add("Fake");
-
         int tempPos = 0;
         foreach(string entityName in GlobalContext.FightingEntitiesNamesToInstantiate)
         {
-            AbstractFightingEntity entity = FightingEntitiesStore.instance.getEntityPrefab(entityName);
+            GeneralFightingEntity entity = FightingEntitiesStore.instance.getEntityPrefab(entityName);
             //TODO Change entity postion
             m_FightingEntities.Add(Instantiate(entity,new Vector3(tempPos, tempPos, 0),Quaternion.identity));
             tempPos++;
@@ -40,7 +36,7 @@ public class CombatEngine : MonoBehaviour
 
     void CreateTargetButtons()
     {
-        foreach(AbstractFightingEntity entity in m_FightingEntities)
+        foreach(GeneralFightingEntity entity in m_FightingEntities)
         {
             m_CombatMenuUI.CreateTargetButton(entity);
         }
@@ -52,7 +48,7 @@ public class CombatEngine : MonoBehaviour
         if (lockTimer == 0)
         {
             int maxCptSpeed = GetMaxEntitiesCptSpeed();
-            IncreaseEntitiesCptSpeed(AbstractFightingEntity.MAX_SPEED - maxCptSpeed);
+            IncreaseEntitiesCptSpeed(GeneralFightingEntity.MAX_SPEED - maxCptSpeed);
         }
         else
         {
@@ -64,7 +60,7 @@ public class CombatEngine : MonoBehaviour
     {
         int maxSpeedFound = int.MinValue;
         //AbstractFightingEntity nextEntiy = null;
-        foreach (AbstractFightingEntity entity in m_FightingEntities)
+        foreach (GeneralFightingEntity entity in m_FightingEntities)
         {
             if(entity.CptSpeed > maxSpeedFound)
             {
@@ -77,7 +73,7 @@ public class CombatEngine : MonoBehaviour
 
     private void IncreaseEntitiesCptSpeed(int amount)
     {
-        foreach (AbstractFightingEntity entity in m_FightingEntities)
+        foreach (GeneralFightingEntity entity in m_FightingEntities)
         {
             entity.IncreaseCptSpeed(amount);
             if (entity.CanPlay() && entity.playerControlled)
@@ -94,7 +90,7 @@ public class CombatEngine : MonoBehaviour
     {
         //TODO Maybe having a function pulling an entity and another one making it play will be better as we will have to loop while no action is given
         //TODO Could also use a list of rdy players in the class. Is it more effective ?
-        AbstractFightingEntity entity = m_FightingEntities.Find(CanPlay);
+        GeneralFightingEntity entity = m_FightingEntities.Find(CanPlay);
         if (entity == null)
         {
             throw new Exception("Function to make an entity play was called but no entity was found able to play!!");

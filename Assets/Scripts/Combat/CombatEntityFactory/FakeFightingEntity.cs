@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FakeFightingEntity : AbstractFightingEntity
+public class FakeFightingEntity : GeneralFightingEntity
 {
     public FakeFightingEntity(int cptSpeed) : base(cptSpeed)
     {

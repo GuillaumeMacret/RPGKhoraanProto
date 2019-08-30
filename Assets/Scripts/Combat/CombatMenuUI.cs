@@ -10,8 +10,8 @@ public class CombatMenuUI : MonoBehaviour
 
     CombatAction action = null;
 
-    AbstractFightingEntity entityPlaying;
-    public AbstractFightingEntity EntityPlaying { get => entityPlaying;}
+    GeneralFightingEntity entityPlaying;
+    public GeneralFightingEntity EntityPlaying { get => entityPlaying;}
 
     public SelectTargetOnClick targetButtonPrefab;
 
@@ -36,7 +36,7 @@ public class CombatMenuUI : MonoBehaviour
         
     }
 
-    public void LoadActionsMenu(AbstractFightingEntity entity)
+    public void LoadActionsMenu(GeneralFightingEntity entity)
     {
         if (isLoaded()) return;
 
@@ -56,7 +56,7 @@ public class CombatMenuUI : MonoBehaviour
         entityPlaying = null;
     }
 
-    public void CreateTargetButton(AbstractFightingEntity entity)
+    public void CreateTargetButton(GeneralFightingEntity entity)
     {
         SelectTargetOnClick newTargetButtonPrefab = Instantiate(targetButtonPrefab);
         newTargetButtonPrefab.SetTarget(entity);
@@ -81,12 +81,12 @@ public class CombatMenuUI : MonoBehaviour
         Debug.Log("Action setted new action is " + action);
     }
 
-    public void SetTargets(List<AbstractFightingEntity> targets)
+    public void SetTargets(List<GeneralFightingEntity> targets)
     {
         action.SetTargets(targets);
     }
 
-    public void SetTarget(AbstractFightingEntity target)
+    public void SetTarget(GeneralFightingEntity target)
     {
         action.SetTarget(target);
         Debug.Log("Targets setted new action is " + action);

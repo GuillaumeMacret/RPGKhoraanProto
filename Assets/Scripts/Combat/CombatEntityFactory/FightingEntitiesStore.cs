@@ -15,11 +15,11 @@ public class FightingEntitiesStore : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public AbstractFightingEntity[] entityStore;
+    public GeneralFightingEntity[] entityStore;
 
-    public AbstractFightingEntity getEntityPrefab(string entityName)
+    public GeneralFightingEntity getEntityPrefab(string entityName)
     {
-        foreach(AbstractFightingEntity entity in entityStore)
+        foreach(GeneralFightingEntity entity in entityStore)
         {
             Debug.Log(entity.entityName);
             if (entity.entityName.Equals(entityName)) return entity;

@@ -2190,8 +2190,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityStore:
-  - {fileID: 6471439313525868537, guid: 3a12cc919c9aa474e82f1b88924f2d46, type: 3}
+  - {fileID: 1720926516954225687, guid: 63890305587109241aaef4ce0ec7d3be, type: 3}
   - {fileID: 1595730141794247089, guid: ff35fa173665f2b4b972b9caea3d78b7, type: 3}
+  - {fileID: -8910805441204190374, guid: de855b3d01188f24b97326bbf0a6e084, type: 3}
 --- !u!4 &1726511294
 Transform:
   m_ObjectHideFlags: 0

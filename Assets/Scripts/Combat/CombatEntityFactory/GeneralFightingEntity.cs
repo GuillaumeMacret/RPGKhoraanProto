@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //TODO Make it abstract, obviously
-public class AbstractFightingEntity : MonoBehaviour
+public class GeneralFightingEntity : MonoBehaviour
 {
     public const int MAX_SPEED = 255;
 
@@ -56,7 +56,7 @@ public class AbstractFightingEntity : MonoBehaviour
 
     }
 
-    public AbstractFightingEntity(int cptSpeed)
+    public GeneralFightingEntity(int cptSpeed)
     {
         this.cptSpeed = cptSpeed;
         this.id = debugId++;

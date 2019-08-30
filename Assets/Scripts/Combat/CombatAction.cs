@@ -8,7 +8,7 @@ public class CombatAction
     protected string name;
     //Strengh of the attack. Negative value indicates damages, positive is healing.
     protected int potency;
-    List<AbstractFightingEntity> m_TargetedEntities;
+    List<GeneralFightingEntity> m_TargetedEntities;
     protected bool built;
     public bool Built { get => built; set => built = value; }
 
@@ -29,7 +29,7 @@ public class CombatAction
         if(action != null)
         {
             //TODO Use dynamic targets menu printing
-            action.m_TargetedEntities = new List<AbstractFightingEntity>();
+            action.m_TargetedEntities = new List<GeneralFightingEntity>();
             //
             action.TestIfActionIsReady();
         }
@@ -43,7 +43,7 @@ public class CombatAction
     }
 
     //FIXME Should copy this instead of passing ref shouldn't we?
-    public void SetTargets(List<AbstractFightingEntity> targets)
+    public void SetTargets(List<GeneralFightingEntity> targets)
     {
         //TODO
         throw new NotImplementedException();
@@ -54,9 +54,9 @@ public class CombatAction
      * Clear the current target list and adds the target given
      * @param the target to add to the list
      **/
-    public void SetTarget(AbstractFightingEntity target)
+    public void SetTarget(GeneralFightingEntity target)
     {
-        m_TargetedEntities = new List<AbstractFightingEntity>();
+        m_TargetedEntities = new List<GeneralFightingEntity>();
         m_TargetedEntities.Add(target);
         TestIfActionIsReady();
     }
@@ -66,7 +66,7 @@ public class CombatAction
      **/
     public void HandleAction()
     {
-        foreach(AbstractFightingEntity target in m_TargetedEntities)
+        foreach(GeneralFightingEntity target in m_TargetedEntities)
         {
             target.ChangeHealth(potency);
         }

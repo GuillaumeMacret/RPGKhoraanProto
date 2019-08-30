@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.8}
+  m_AnchoredPosition: {x: 0, y: 1.2}
   m_SizeDelta: {x: 5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2521040228553199281
@@ -119,8 +119,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 2, y: 2}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!223 &6993133656790776074
 Canvas:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.6}
+  m_AnchoredPosition: {x: 0, y: 1}
   m_SizeDelta: {x: 5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7820561427412357423
@@ -303,7 +303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.6}
+  m_AnchoredPosition: {x: 0, y: 1}
   m_SizeDelta: {x: 5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6009097296009319367
@@ -387,8 +387,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3bea1ef6738f5b4fbc77b6dde78fc8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 500
-  speed: 10
+  maxHp: 100
+  speed: 0
 --- !u!1 &6471439313525868536
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,9 +399,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6471439313525868539}
   - component: {fileID: 6471439313525868538}
-  - component: {fileID: 1595730141794247089}
+  - component: {fileID: 1720926516954225687}
   m_Layer: 0
-  m_Name: FakeFightingEntity
+  m_Name: NieilsRingOpponent1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -461,7 +461,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b0ec19cc7a94f0547b32ab437b863902, type: 3}
+  m_Sprite: {fileID: 2625182283019984572, guid: 64393c6796caa264182d766881f39886,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -472,7 +473,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1595730141794247089
+--- !u!114 &1720926516954225687
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -481,9 +482,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6471439313525868536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 643bdfea3f15da743b7c0083cf063fad, type: 3}
+  m_Script: {fileID: 11500000, guid: dd1eae4787716744ca7210c482db87a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hpText: {fileID: 396091793648208842}
-  entityName: Fake
-  playerControlled: 1
+  entityName: NieilsRingOpponent1
+  playerControlled: 0
