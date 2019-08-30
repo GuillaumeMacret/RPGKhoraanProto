@@ -5,4 +5,5 @@ using UnityEngine;
 public class GlobalContext
 {
     public static List<string> FightingEntitiesNamesToInstantiate = new List<string>();
+    public static string precSceneName;
 }

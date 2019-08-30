@@ -19,7 +19,8 @@ public class GobelinController : NonPlayableCharacter
 
     public override void OnRaycast()
     {
-        Debug.Log("Loading combat scene ...");
+        GlobalContext.precSceneName = SceneManager.GetActiveScene().name;
+        Debug.Log("From " + GlobalContext.precSceneName + " to combat scene ...");
         GlobalContext.FightingEntitiesNamesToInstantiate.Clear();
         GlobalContext.FightingEntitiesNamesToInstantiate.Add("Player1");
         GlobalContext.FightingEntitiesNamesToInstantiate.Add("Player2");

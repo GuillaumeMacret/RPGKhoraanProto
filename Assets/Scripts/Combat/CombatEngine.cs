@@ -13,6 +13,8 @@ public class CombatEngine : MonoBehaviour
     //Locks the timer loop when it's not null. Value indicates how many entities are still ready to play
     private int lockTimer = 0;
 
+    private int allyCount = 0, ennemyCount = 0;
+
     static bool CanPlay(GeneralFightingEntity e) { return e.CanPlay(); }
 
     // Start is called before the first frame update
@@ -25,6 +27,7 @@ public class CombatEngine : MonoBehaviour
 
     void CreateEntities()
     {
+        allyCount = ennemyCount = 0;
         int allyXOffset = 0, ennemyXOffset = 0;
         foreach (string entityName in GlobalContext.FightingEntitiesNamesToInstantiate)
         {
@@ -33,11 +36,13 @@ public class CombatEngine : MonoBehaviour
 
             if (entity.playerControlled)
             {
+                allyCount++;
                 m_FightingEntities.Add(Instantiate(entity, new Vector3(3f + ((allyXOffset % 2 == 0)?2:0), allyXOffset, 0), Quaternion.identity));
                 allyXOffset++;
             }
             else
             {
+                ennemyCount++;
                 m_FightingEntities.Add(Instantiate(entity, new Vector3(-3f + ((ennemyXOffset % 2 == 0) ? 2 : 0), ennemyXOffset, 0), Quaternion.identity));
                 ennemyXOffset++;
             }
@@ -120,6 +125,7 @@ public class CombatEngine : MonoBehaviour
                     //TODO Make different action recover speed
                     entity.ResetCptSpeed();
                     m_CombatMenuUI.UnloadMenu();
+                    RemoveDeadEntities();
                     lockTimer--;
                 }
 
@@ -134,7 +140,23 @@ public class CombatEngine : MonoBehaviour
             }
         }
     }
-    
+
+    private void RemoveDeadEntities()
+    {
+        List<GeneralFightingEntity> toRemove = new List<GeneralFightingEntity>();
+        foreach(GeneralFightingEntity entity in m_FightingEntities)
+        {
+            if (entity.IsDead())
+            {
+                toRemove.Add(entity);
+            }
+        }
+        foreach(GeneralFightingEntity entity in toRemove)
+        {
+            m_FightingEntities.Remove(entity);
+        }
+    }
+
     /**
      * Handles the given action : Adjust hp, mp, ...
      **/

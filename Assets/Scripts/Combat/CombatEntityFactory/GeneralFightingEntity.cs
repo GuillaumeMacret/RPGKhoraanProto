@@ -83,6 +83,11 @@ public class GeneralFightingEntity : MonoBehaviour
         cptSpeed = actualSpeed;
     }
 
+    public bool IsDead()
+    {
+        return statistics.GetCurrentHp() <= 0;
+    }
+
     public void GetCombatMenu()
     {
         //TODO
