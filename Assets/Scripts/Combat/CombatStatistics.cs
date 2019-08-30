@@ -10,7 +10,7 @@ public class CombatStatistics : MonoBehaviour
     public int speed;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         currentHp = maxHp;
     }
