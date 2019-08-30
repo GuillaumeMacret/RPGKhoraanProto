@@ -22,6 +22,8 @@ public class GobelinController : NonPlayableCharacter
         Debug.Log("Loading combat scene ...");
         GlobalContext.FightingEntitiesNamesToInstantiate.Clear();
         GlobalContext.FightingEntitiesNamesToInstantiate.Add("Player1");
+        GlobalContext.FightingEntitiesNamesToInstantiate.Add("Player2");
+        GlobalContext.FightingEntitiesNamesToInstantiate.Add("NieilsRingOpponent1");
         GlobalContext.FightingEntitiesNamesToInstantiate.Add("NieilsRingOpponent1");
         SceneManager.LoadScene("CombatScene");
     }

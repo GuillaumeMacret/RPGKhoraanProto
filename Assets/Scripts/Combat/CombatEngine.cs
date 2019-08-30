@@ -25,13 +25,22 @@ public class CombatEngine : MonoBehaviour
 
     void CreateEntities()
     {
-        int tempPos = 0;
+        int allyXOffset = 0, ennemyXOffset = 0;
         foreach (string entityName in GlobalContext.FightingEntitiesNamesToInstantiate)
         {
             GeneralFightingEntity entity = FightingEntitiesStore.instance.getEntityPrefab(entityName);
-            //TODO Change entity postion
-            m_FightingEntities.Add(Instantiate(entity, new Vector3(tempPos, tempPos, 0), Quaternion.identity));
-            tempPos++;
+            
+
+            if (entity.playerControlled)
+            {
+                m_FightingEntities.Add(Instantiate(entity, new Vector3(3f + ((allyXOffset % 2 == 0)?2:0), allyXOffset, 0), Quaternion.identity));
+                allyXOffset++;
+            }
+            else
+            {
+                m_FightingEntities.Add(Instantiate(entity, new Vector3(-3f + ((ennemyXOffset % 2 == 0) ? 2 : 0), ennemyXOffset, 0), Quaternion.identity));
+                ennemyXOffset++;
+            }
         }
     }
 

@@ -43,7 +43,7 @@ public class CombatMenuUI : MonoBehaviour
         //TODO Load menu
         Debug.Log("[MENU IS LOADING] For : " + entity);
         entityPlaying = entity;
-        topLabel.text = entity.name;
+        topLabel.text = entity.entityName;
     }
 
     public void UnloadMenu()
@@ -59,6 +59,7 @@ public class CombatMenuUI : MonoBehaviour
     public void CreateTargetButton(GeneralFightingEntity entity)
     {
         SelectTargetOnClick newTargetButtonPrefab = Instantiate(targetButtonPrefab);
+        newTargetButtonPrefab.name = entity.entityName;
         newTargetButtonPrefab.SetTarget(entity);
         newTargetButtonPrefab.transform.SetParent(targetsMenuContainer.transform);
     }
