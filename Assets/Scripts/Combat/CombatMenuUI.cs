@@ -75,6 +75,14 @@ public class CombatMenuUI : MonoBehaviour
         return null;
     }
 
+    internal void ClearTargetButtons()
+    {
+        foreach (Transform child in targetsMenuContainer.transform)
+        {
+            Destroy(child);
+        }
+    }
+
     public void SetAction(string actionName)
     {
         action = CombatAction.CreateAction(actionName);

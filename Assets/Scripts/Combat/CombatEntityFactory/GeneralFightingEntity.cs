@@ -75,7 +75,7 @@ public class GeneralFightingEntity : MonoBehaviour
 
     public bool CanPlay()
     {
-        return CptSpeed >= MAX_SPEED;
+        return CptSpeed >= MAX_SPEED && !IsDead();
     }
 
     public void ResetCptSpeed()

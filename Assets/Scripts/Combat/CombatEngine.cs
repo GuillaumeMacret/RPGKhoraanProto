@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class CombatEngine : MonoBehaviour
@@ -11,7 +12,9 @@ public class CombatEngine : MonoBehaviour
 
     
     //Locks the timer loop when it's not null. Value indicates how many entities are still ready to play
-    private int lockTimer = 0;
+    private int entitiesAbleToPlay = 0;
+    // Prevents updates when not needed
+    private bool lockUpdate = false;
 
     private int allyCount = 0, ennemyCount = 0;
 
@@ -32,7 +35,6 @@ public class CombatEngine : MonoBehaviour
         foreach (string entityName in GlobalContext.FightingEntitiesNamesToInstantiate)
         {
             GeneralFightingEntity entity = FightingEntitiesStore.instance.getEntityPrefab(entityName);
-            
 
             if (entity.playerControlled)
             {
@@ -48,9 +50,11 @@ public class CombatEngine : MonoBehaviour
             }
         }
     }
-
+    
     void CreateTargetButtons()
     {
+        //m_CombatMenuUI.ClearTargetButtons();
+
         foreach(GeneralFightingEntity entity in m_FightingEntities)
         {
             m_CombatMenuUI.CreateTargetButton(entity);
@@ -60,14 +64,19 @@ public class CombatEngine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (lockTimer == 0)
+        if (!lockUpdate)
         {
-            int maxCptSpeed = GetMaxEntitiesCptSpeed();
-            IncreaseEntitiesCptSpeed(GeneralFightingEntity.MAX_SPEED - maxCptSpeed);
-        }
-        else
-        {
-            MakeOneEntityPlay();
+            if (entitiesAbleToPlay == 0)
+            {
+                int maxCptSpeed = GetMaxEntitiesCptSpeed();
+                IncreaseEntitiesCptSpeed(GeneralFightingEntity.MAX_SPEED - maxCptSpeed);
+            }
+            else
+            {
+                lockUpdate = true;
+                MakeOneEntityPlay();
+                lockUpdate = false;
+            }
         }
     }
 
@@ -94,7 +103,7 @@ public class CombatEngine : MonoBehaviour
             if (entity.CanPlay())
             {
                 //TODO Could also use a list of rdy players in the class. Is it more effective ?
-                lockTimer++;
+                entitiesAbleToPlay++;
                 //FIXME Debug purpose, delete this
                 Debug.Log("[RECAP]" + m_FightingEntities[0] + "\n" + m_FightingEntities[1]);
             }
@@ -126,7 +135,8 @@ public class CombatEngine : MonoBehaviour
                     entity.ResetCptSpeed();
                     m_CombatMenuUI.UnloadMenu();
                     RemoveDeadEntities();
-                    lockTimer--;
+                    entitiesAbleToPlay--;
+                    CheckBattleOver();
                 }
 
                 action = null;
@@ -136,11 +146,22 @@ public class CombatEngine : MonoBehaviour
                 Debug.Log("[To be implemented] NPC entity needs to play, skipping");
                 //TODO
                 entity.ResetCptSpeed();
-                lockTimer--;
+                entitiesAbleToPlay--;
             }
         }
     }
 
+    private void CheckBattleOver()
+    {
+        Debug.Log("Allies : " + allyCount + ", Ennemies : " + ennemyCount);
+        if (allyCount <= 0) Quit.DoQuit();
+        if(ennemyCount <= 0)
+        {
+            SceneManager.LoadScene(GlobalContext.precSceneName);
+        }
+    }
+
+    //FIXME This function is fucking up
     private void RemoveDeadEntities()
     {
         List<GeneralFightingEntity> toRemove = new List<GeneralFightingEntity>();
@@ -151,10 +172,26 @@ public class CombatEngine : MonoBehaviour
                 toRemove.Add(entity);
             }
         }
+        
         foreach(GeneralFightingEntity entity in toRemove)
         {
+            if (entity.playerControlled)
+            {
+                allyCount--;
+            }
+            else
+            {
+                ennemyCount--;
+            }
             m_FightingEntities.Remove(entity);
+            if (entity.CanPlay())
+            {
+                entitiesAbleToPlay--;
+            }
+
+            //CreateTargetButtons();
         }
+        
     }
 
     /**

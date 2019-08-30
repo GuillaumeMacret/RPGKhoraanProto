@@ -21,7 +21,6 @@ public class FightingEntitiesStore : MonoBehaviour
     {
         foreach(GeneralFightingEntity entity in entityStore)
         {
-            Debug.Log(entity.entityName);
             if (entity.entityName.Equals(entityName)) return entity;
         }
 
