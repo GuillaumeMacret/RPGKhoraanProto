@@ -6,7 +6,7 @@ public class HealAction : CombatAction
 {
     public HealAction()
     {
-        name = "Basic attack";
+        name = "Heal";
         potency = 100;
     }
 }

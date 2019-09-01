@@ -117,7 +117,10 @@ public class CombatEngine : MonoBehaviour
         GeneralFightingEntity entity = m_FightingEntities.Find(CanPlay);
         if (entity == null)
         {
-            throw new Exception("Function to make an entity play was called but no entity was found able to play!!");
+            Debug.Log("[WARN] Function to make an entity play was called but no entity was found able to play, reseting counter");
+            entitiesAbleToPlay = 0;
+            //TODO should use this instead, above isn't clean
+            //throw new Exception("Function to make an entity play was called but no entity was found able to play!!");
         }
         else
         {
@@ -169,6 +172,7 @@ public class CombatEngine : MonoBehaviour
         {
             if (entity.IsDead())
             {
+                Debug.Log("[DEAD] " + entity + " is deaded");
                 toRemove.Add(entity);
             }
         }
