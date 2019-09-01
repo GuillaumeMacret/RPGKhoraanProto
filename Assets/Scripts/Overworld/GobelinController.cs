@@ -19,13 +19,28 @@ public class GobelinController : NonPlayableCharacter
 
     public override void OnRaycast()
     {
-        GlobalContext.precSceneName = SceneManager.GetActiveScene().name;
         Debug.Log("From " + GlobalContext.precSceneName + " to combat scene ...");
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if(player == null)
+        {
+            throw new System.Exception("Can't find the player in current scene !");
+        }
+        else
+        {
+            GlobalContext.playerTransformPosition = player.transform.position;
+            GlobalContext.useSavedPosition = true;
+            Debug.Log("Transform stored : " + GlobalContext.playerTransformPosition);
+        }
+
+        GlobalContext.precSceneName = SceneManager.GetActiveScene().name;
+
         GlobalContext.FightingEntitiesNamesToInstantiate.Clear();
         GlobalContext.FightingEntitiesNamesToInstantiate.Add("Player1");
         GlobalContext.FightingEntitiesNamesToInstantiate.Add("Player2");
         GlobalContext.FightingEntitiesNamesToInstantiate.Add("NieilsRingOpponent1");
         GlobalContext.FightingEntitiesNamesToInstantiate.Add("NieilsRingOpponent1");
+
         SceneManager.LoadScene("CombatScene");
     }
 }

@@ -12,6 +12,20 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     Vector2 lookDirection = new Vector2(0, -1);
 
+    private void Awake()
+    {
+        if (GlobalContext.useSavedPosition)
+        {
+            Debug.Log("[SAVE] Using saved position for player");
+            transform.position = GlobalContext.playerTransformPosition;
+            GlobalContext.useSavedPosition = false;
+        }
+        else
+        {
+            Debug.Log("[SAVE] No saved position used for player");
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

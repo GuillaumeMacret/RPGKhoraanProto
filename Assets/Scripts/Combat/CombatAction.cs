@@ -24,6 +24,9 @@ public class CombatAction
         else if (actionName == "heal")
         {
             action = new HealAction();
+        }else if(actionName == "scenarium")
+        {
+            action = new ScenariumAction();
         }
 
         if(action != null)
