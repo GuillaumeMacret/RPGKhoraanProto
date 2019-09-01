@@ -13,7 +13,6 @@ public class NonPlayableCharacter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogBox.SetActive(false);
         timerDisplay = -1f;
     }
 
@@ -25,14 +24,15 @@ public class NonPlayableCharacter : MonoBehaviour
             timerDisplay -= Time.deltaTime;
             if (timerDisplay < 0)
             {
-                dialogBox.SetActive(false);
+                DialogBox.instance.SetActive(false);
             }
         }
     }
 
     public virtual void OnRaycast()
     {
-        dialogBox.SetActive(true);
+        DialogBox.instance.SetText("Blabla");
+        DialogBox.instance.SetActive(true);
         timerDisplay = displayTime;
     }
 }
