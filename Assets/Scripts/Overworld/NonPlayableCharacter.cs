@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NonPlayableCharacter : MonoBehaviour
 {
 
     public float displayTime = 4f;
-    public GameObject dialogBox;
 
     float timerDisplay;
 
@@ -31,7 +31,8 @@ public class NonPlayableCharacter : MonoBehaviour
 
     public virtual void OnRaycast()
     {
-        DialogBox.instance.SetText("Blabla");
+        //FIXME Use the entity text field instead (temp solution before dialog trees)
+        DialogBox.instance.SetText(GetComponentInChildren<Text>().text);
         DialogBox.instance.SetActive(true);
         timerDisplay = displayTime;
     }
