@@ -36,6 +36,7 @@ public class DialogBox : MonoBehaviour
             }
             else
             {
+                m_Text.pageToDisplay = 1;
                 SetActive(false);
             }
         }
