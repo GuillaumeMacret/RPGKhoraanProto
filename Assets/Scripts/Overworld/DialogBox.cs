@@ -28,7 +28,18 @@ public class DialogBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetButtonDown("Fire2"))
+        {
+            if(m_Text.pageToDisplay < m_Text.textInfo.pageCount)
+            {
+                m_Text.pageToDisplay++;
+            }
+        }
+    }
+
+    public bool isActive()
+    {
+        return gameObject.activeInHierarchy;
     }
 
     public void SetActive(bool active)
