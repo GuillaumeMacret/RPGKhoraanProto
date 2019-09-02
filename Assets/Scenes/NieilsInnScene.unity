@@ -26111,6 +26111,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 49815657824986430, guid: 781e3d6603c1c4e4687f4d75c89ccd48,
+        type: 3}
+      propertyPath: m_Text
+      value: "Salutations ! Tu veux une bi\xE8re ?\nLorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Vivamus pulvinar a nisi nec lobortis. Nulla posuere eu ipsum
+        eu eleifend. Maecenas iaculis, lectus id porta varius, est nisl tincidunt
+        risus, nec hendrerit eros enim ac sem. Proin tristique finibus quam, et consectetur
+        purus iaculis nec. Nullam at cursus dolor. Suspendisse lorem felis, pulvinar
+        ut viverra eu, finibus vel nibh. Fusce quis nisi nec ante vulputate consectetur.
+        Aliquam ac auctor erat. Nunc nec sem tortor. Sed neque massa, fringilla aliquet
+        blandit imperdiet, accumsan ac tellus. Quisque accumsan maximus leo a dignissim.
+        Fusce interdum eleifend arcu in facilisis. In ultrices sodales ligula, nec
+        molestie felis venenatis vitae."
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 781e3d6603c1c4e4687f4d75c89ccd48, type: 3}
 --- !u!1001 &4262708047721727844
