@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
         rigidbody2d.MovePosition(position);
 
-        if (Input.GetButtonDown("Fire2") && !DialogBox.instance.isActive())
+        if (Input.GetButtonDown("Fire1") && !DialogBox.instance.isActive())
         {
             RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 3.0f, LayerMask.GetMask("NPC"));
             if (hit.collider != null)

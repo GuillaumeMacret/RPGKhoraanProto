@@ -11,7 +11,7 @@ public class ChoiceBox : MonoBehaviour
     public TextMeshProUGUI choiceItemPrefab;
 
     private List<TextMeshProUGUI> choicesList;
-    private List<Func<string, string>> functionsList;
+    private List<Func<string, int>> functionsList;
 
     private int indexHovered = 0;
     private const float inputDelay = 0.25f;
@@ -29,15 +29,14 @@ public class ChoiceBox : MonoBehaviour
         }
 
         choicesList = new List<TextMeshProUGUI>();
-        functionsList = new List<Func<string, string>>();
+        functionsList = new List<Func<string, int>>();
 
-        //FIXME test purpose delete this
-        AddItem("Oui",null);
-        AddItem("Non",null);
-        AddItem("C'est pas faux",null);
-        //END of test purpose
+        AddItem("If you see this",null);
+        AddItem("There is an error",null);
 
         if (choicesList.Count > 0) SetHovered(choicesList[indexHovered]);
+
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -74,17 +73,21 @@ public class ChoiceBox : MonoBehaviour
 
     public void ClearItems()
     {
+        foreach(TextMeshProUGUI item in GetComponentsInChildren<TextMeshProUGUI>())
+        {
+            Destroy(item.gameObject);
+        }
         choicesList.Clear();
         functionsList.Clear();
     }
 
-    private string NoActionBackup(string s)
+    private int NoActionBackup(string s)
     {
         Debug.Log("[WARN] No action set for " + s);
-        return s;
+        return 0;
     }
 
-    public void AddItem(string text, Func<string,string> function)
+    public void AddItem(string text, Func<string,int> function)
     {
         if (function == null) function = NoActionBackup;
 
@@ -130,5 +133,9 @@ public class ChoiceBox : MonoBehaviour
         //NOTE : Here param is the choice's text, but it's not used unless reporting an error
         // Could be changed if needed
         functionsList[indexHovered](choicesList[indexHovered].text);
+    }
+    public void SetActive(bool active)
+    {
+        gameObject.SetActive(active);
     }
 }

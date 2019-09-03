@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GobelinController : NonPlayableCharacter
 {
@@ -19,10 +21,29 @@ public class GobelinController : NonPlayableCharacter
 
     public override void OnRaycast()
     {
+        DialogBox.instance.SetText(GetComponentInChildren<Text>().text);
+        DialogBox.instance.SetActive(true);
+
+        ChoiceBox.instance.ClearItems();
+        ChoiceBox.instance.AddItem("Oui",StartRingFight);
+        ChoiceBox.instance.AddItem("Non",ShowTauntMessage);
+
+        ChoiceBox.instance.SetActive(true);
+    }
+
+    private int ShowTauntMessage(string arg)
+    {
+        DialogBox.instance.SetText("Tu devrais revenir après avoir bu un coup alors !");
+        DialogBox.instance.SetActive(true);
+        return 1;
+    }
+
+    private int StartRingFight(string s)
+    {
         Debug.Log("From " + GlobalContext.precSceneName + " to combat scene ...");
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if(player == null)
+        if (player == null)
         {
             throw new System.Exception("Can't find the player in current scene !");
         }
@@ -42,5 +63,7 @@ public class GobelinController : NonPlayableCharacter
         GlobalContext.FightingEntitiesNamesToInstantiate.Add("NieilsRingOpponent1");
 
         SceneManager.LoadScene("CombatScene");
+
+        return 1;
     }
 }
