@@ -11,9 +11,11 @@ public class ChoiceBox : MonoBehaviour
     public TextMeshProUGUI choiceItemPrefab;
 
     private List<TextMeshProUGUI> choicesList;
+    private List<Func<string, string>> functionsList;
 
     private int indexHovered = 0;
-
+    private const float inputDelay = 0.25f;
+    private float inputDelayTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,26 +29,71 @@ public class ChoiceBox : MonoBehaviour
         }
 
         choicesList = new List<TextMeshProUGUI>();
+        functionsList = new List<Func<string, string>>();
 
         //FIXME test purpose delete this
-        TextMeshProUGUI newText = Instantiate(choiceItemPrefab);
-        newText.gameObject.transform.SetParent(gameObject.transform);
-        choicesList.Add(newText);
-        newText = Instantiate(choiceItemPrefab);
-        newText.gameObject.transform.SetParent(gameObject.transform);
-        choicesList.Add(newText);
-
-        NextItem();
-        NextItem();
-        NextItem();
+        AddItem("Oui",null);
+        AddItem("Non",null);
+        AddItem("C'est pas faux",null);
         //END of test purpose
 
+        if (choicesList.Count > 0) SetHovered(choicesList[indexHovered]);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (inputDelayTimer <= 0)
+        {
+            float vertical = Input.GetAxis("Vertical");
+            if (!Mathf.Approximately(0, vertical))
+            {
+                if (vertical < 0)
+                {
+                    NextItem();
+                }
+                else
+                {
+                    PreviousItem();
+                }
+                inputDelayTimer = inputDelay;
+            }
+        }
+        else
+        {
+            inputDelayTimer -= Time.deltaTime;
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            gameObject.SetActive(false);
+            TriggerHoveredItem();
+        }
+
+    }
+
+    public void ClearItems()
+    {
+        choicesList.Clear();
+        functionsList.Clear();
+    }
+
+    private string NoActionBackup(string s)
+    {
+        Debug.Log("[WARN] No action set for " + s);
+        return s;
+    }
+
+    public void AddItem(string text, Func<string,string> function)
+    {
+        if (function == null) function = NoActionBackup;
+
+        TextMeshProUGUI newText = Instantiate(choiceItemPrefab);
+        newText.text = text;
+        newText.gameObject.transform.SetParent(gameObject.transform);
+        choicesList.Add(newText);
+
+        functionsList.Add(function);
     }
 
     public void NextItem()
@@ -60,11 +107,13 @@ public class ChoiceBox : MonoBehaviour
     private void UnsetHovered(TextMeshProUGUI textMeshProUGUI)
     {
         textMeshProUGUI.fontStyle = FontStyles.Normal;
+        textMeshProUGUI.fontSize = 18;
     }
 
     private void SetHovered(TextMeshProUGUI textMeshProUGUI)
     {
         textMeshProUGUI.fontStyle = FontStyles.Bold;
+        textMeshProUGUI.fontSize = 22;
     }
 
     public void PreviousItem()
@@ -74,5 +123,12 @@ public class ChoiceBox : MonoBehaviour
         indexHovered += choicesList.Count;
         indexHovered %= choicesList.Count;
         SetHovered(choicesList[indexHovered]);
+    }
+
+    public void TriggerHoveredItem()
+    {
+        //NOTE : Here param is the choice's text, but it's not used unless reporting an error
+        // Could be changed if needed
+        functionsList[indexHovered](choicesList[indexHovered].text);
     }
 }

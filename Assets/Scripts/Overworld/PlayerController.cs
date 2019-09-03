@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        if (DialogBox.instance.isActive())
+        if (DialogBox.instance.isActive() || ChoiceBox.instance.isActiveAndEnabled)
         {
             horizontal = vertical = 0;
         }
