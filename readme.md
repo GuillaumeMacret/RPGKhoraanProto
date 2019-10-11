@@ -10,4 +10,4 @@ The project is developped with Unity. You can learn how to use it [here](https:/
 
 ## Contribute
 
-This is early work, no release was made at the time. In that way you can't contribute yet. When a first release will pop out we will appreciate bug reports.
+This is early work, we don't have any precise idea of what we want to do yet and just trying things under Unity. In that way you can't really contribute yet.
